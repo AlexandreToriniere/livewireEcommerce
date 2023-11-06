@@ -42,6 +42,7 @@
                                 <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Acceuil</a>
                                 <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{route('products.index') }}">Produits</a>
                                 <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Contact</a>
+                                <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{route('cart.index')}}">Contact</a>
                             </div>
                         </nav>
                        

@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Frontend\CategoryController as FrontendCategoryController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Frontend\CheckoutController as FrontendCheckoutController;
-
+use App\Http\Controllers\Frontend\CartController as FrontendCartController;
 
 
 /*
@@ -27,13 +27,27 @@ Route::get('/', function () {
 });
 
 
-//Frontend
+//---------------------------Frontend---------------------------->
 Route::get('/categories', [FrontendCategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{category}', [FrontendCategoryController::class, 'show'])->name('categories.show');
+
+//---------------------------Products---------------------------->
 Route::get('/produits', [FrontendProductController::class, 'index'])->name('products.index');
 Route::get('/{product}',[FrontendProductController::class, 'show'])->name('products.show');
-Route::get('/checkout', [FrontendCheckoutController::class, 'index'])->name('checkout.index');
 
+//---------------------------Cart---------------------------->
+Route::get('/cart',[FrontendCartController::class, 'index'])->name('cart.index');
+Route::get('/cart',[FrontendCartController::class, 'store'])->name('cart.store');
+Route::get('/cart/reset',[FrontendCartController::class, 'reset'])->name('cart.reset');
+
+//---------------------------Checkout---------------------------->
+Route::get('/checkout', [FrontendCheckoutController::class, 'index'])->name('checkout.index');
+// Route::get('/checkout', [FrontendCheckoutController::class, 'index'])->name('checkout.index');
+
+
+
+
+//---------------------------Frontend---------------------------->
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
