@@ -19,10 +19,9 @@
                         <x-nav-link :href="route('admin.index')" :active="request()->routeIs('dashboard')">
                             {{ __('Admin') }}
                         </x-nav-link>
-                    @endif    
+                    @endif
                 </div>
             </div>
-
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
