@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class CheckoutController extends Controller
 {
     public function index(){
-        return view('frontend/checkout');
+        
+        return view ('frontend/checkout');
     }
 }

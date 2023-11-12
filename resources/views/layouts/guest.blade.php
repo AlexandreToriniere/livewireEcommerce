@@ -12,12 +12,27 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
     <body class="font-sans text-gray-900 antialiased">
+        <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+            @if (Route::has('login'))
+                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+                    @auth
+                        <a href="{{ url('/home') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
+                    @else
+                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
             <div x-data="{ cartOpen: false , isOpen: false }" class="bg-white">
                 <header>
                     <div class="container mx-auto px-6 py-3">
-                        <div class="flex  justify-between">  
+                        <div class="flex  justify-between">
                             <div class=" flex justify-end w-full text-gray-700 md:text-center text-2xl font-semibold">
                                 Hoopers Island 974
                             </div>
@@ -27,7 +42,7 @@
                                         <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                                     </svg>
                                 </button>
-            
+
                                 <div class="flex sm:hidden">
                                     <button @click="isOpen = !isOpen" type="button" class="text-gray-600 hover:text-gray-500 focus:outline-none focus:text-gray-500" aria-label="toggle menu">
                                         <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
@@ -42,15 +57,15 @@
                                 <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Acceuil</a>
                                 <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{route('products.index') }}">Produits</a>
                                 <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Contact</a>
-                                <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{route('cart.index')}}">Contact</a>
+                                <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{route('cart.index')}}">Cart</a>
                             </div>
                         </nav>
-                       
+
                     </div>
                 </header>
                 <div :class="cartOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'" class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-2xl font-medium text-gray-700">Your cart</h3>
+                        <h3 class="text-2xl font-medium text-gray-700">Votre Panier</h3>
                         <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none">
                             <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M6 18L18 6M6 6l12 12"></path></svg>
                         </button>
@@ -241,7 +256,7 @@
                         </div>
                     </div>
                 </main>
-            
+
                 <footer class="bg-gray-200">
                     <div class="container mx-auto px-6 py-3 flex justify-between items-center">
                         <a href="#" class="text-xl font-bold text-gray-500 hover:text-gray-400">Brand</a>
