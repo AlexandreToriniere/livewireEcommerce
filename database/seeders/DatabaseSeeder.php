@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-       $this->call(Admin::class);
+    //    $this->call(Admin::class);
+        $this->call(CouponTableSeeder::class);
+
     }
 }

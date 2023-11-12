@@ -14,7 +14,7 @@
 </head>
 <header>
     <div class="container mx-auto px-6 py-3">
-        <div class="flex  justify-between">  
+        <div class="flex  justify-between">
             <div class=" flex justify-end w-full text-gray-700 md:text-center text-2xl font-semibold">
                 Hoopers Island 974
             </div>
@@ -41,7 +41,7 @@
                 <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Contact</a>
             </div>
         </nav>
-       
+
     </div>
 </header>
 <section class="text-gray-700 body-font overflow-hidden bg-white">
@@ -114,7 +114,7 @@
           </div>
           <div class="flex">
             <span class="title-font font-medium text-2xl text-gray-900">{{$product->price}} €</span>
-            <form action="{{route('cart.store')}}" method="POST">
+            <form action="{{route('checkout.store')}}" method="POST">
               @csrf
               <input type="hidden" name="id" value="{{$product->id}}">
               <input type="hidden" name="name" value="{{$product->name}}">

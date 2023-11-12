@@ -59,13 +59,13 @@
                                 <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{route('products.index') }}">Produits</a>
                                 <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Contact</a>
                                 <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{route('checkout.index')}}">Cart</a>
-                                <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{route('login.index')}}">Test</a>
+                                <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="{{route('categories.index')}}">test</a>
                             </div>
                         </nav>
 
                     </div>
                 </header>
-                {{-- <div :class="cartOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'" class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300">
+                <div :class="cartOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'" class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300">
                     <div class="flex items-center justify-between">
                         <h3 class="text-2xl font-medium text-gray-700">Votre Panier</h3>
                         <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none">
@@ -138,7 +138,7 @@
                         <span>Chechout</span>
                         <svg class="h-5 w-5 mx-2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
-                </div> --}}
+                </div>
                 <main class="my-8">
                     <div class="container mx-auto px-6">
                         <div class="h-64 rounded-md overflow-hidden bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1577655197620-704858b270ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=144')">
