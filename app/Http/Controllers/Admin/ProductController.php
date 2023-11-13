@@ -57,26 +57,39 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $products)
     {
+        dd($request);
         $request->validate([
             'name' =>'required',
             'description' =>'required',
-
+            // 'slug' => 'required',
+            // 'price' =>'required',
+            // 'quantity' =>'required',
+            // 'meta_title' => 'required',
+            // 'meta_key'=> 'required',
+            // 'meta_description' => 'required',
+            // 'status' => 'required',
         ]);
 
-        $image = $product->image;
+        $image = $products->image;
         if($request->hasFile('image')){
-            Storage::delete($product->image);
+            Storage::delete($products->image);
             $image = $request->file('image')->store('public/products');
         }
 
-        $category->update([
+        $products->update([
             'name'=>$request->name,
             'description'=> $request->description,
             'image' => $image,
+            // 'price'=>$request->price,
+            // 'quantity'=>$request->quantity,
+            // 'meta_title'=>$request->meta_title,
+            // 'meta_key'=>$request->meta_key,
+            // 'meta_description'=>$request->meta_description,
+            // 'status'=>$request->status,
         ]);
 
         if($request->has('categories')){
-            $prestation->categories()->sync($request->categories);
+            $products->categories()->sync($request->categories);
         }
 
         return to_route('admin.products.index')->with('Product edited successfully.');

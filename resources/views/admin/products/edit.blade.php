@@ -24,18 +24,26 @@
                     <div class="mt-1">
                         <input type="text" id="slug" wire:model.lazy="slug" name="slug" value="{{$product->name}}" class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                     </div>
+                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity </label>
+                    <div class="mt-1">
+                        <input type="number" id="quantity" wire:model.lazy="number" name="quantity" class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                    </div>
+
                     <div>
                         <img class="w-32 h-32" src="{{ Storage::url($product->image)}}">
                     </div>
                     <label for="image" class="block text-sm font-medium text-gray-700">Image </label>
                     <div class="mt-3">
                         <input type="file" id="image" wire:model="newImage" name="image" class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                      </div>
-
-                      <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-                      <div class="mt-1">
+                    </div>
+                    <label for="price" class="block text-sm font-medium text-gray-700"> Price </label>
+                    <div class="mt-1">
+                        <input type="Number" id="price" wire:model.lazy="title" name="price" value="{{$product->price}}" class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('price') border-red-400 @enderror" />
+                    </div>
+                    <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                    <div class="mt-1">
                         <textarea id="description" rows="3" name="description" value="{{$product->description}}" class="shadow-sm focus:ring-indigo-500 appearance-none bg-white border  rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md  border-red-400 "> {{$product->description}}</textarea>
-                      </div>
+                    </div>
 
                     <div class=" mt-7 block text-sm font-medium text-gray-700">
                       <h4>SEO Tags</h4>

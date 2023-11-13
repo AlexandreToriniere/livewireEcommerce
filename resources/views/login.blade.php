@@ -1,3 +1,6 @@
+@extends('layouts.master')
+@section('content')
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,4 +60,15 @@
             </x-primary-button>
         </div>
     </form>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+
+
+        <!--logout-->
+        <x-dropdown-link :href="route('logout')"
+                onclick="event.preventDefault();
+                            this.closest('form').submit();">
+            {{ __('Log Out') }}
+        </x-dropdown-link>
+    @stop
 
