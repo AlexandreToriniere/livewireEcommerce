@@ -8,13 +8,13 @@
     <div class="flex justify-end m-2 p-2">
         <a href="{{ route('admin.products.create')}}" class=" px-4 py-2 bg-indigo-500 hover:bg-indigo-700 rounded-lg text-white"> New products</a>
     </div>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">           
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">    
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Category name
+                            Product name
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Price
@@ -56,7 +56,7 @@
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                            <a href="{{ route('admin.products.edit', $product->id)}}" class="px-4 py-2 bg-green-500 hover:bg-green-700 rounded-lg text-white">Edit</a>
-                           <form wire:submit.prevent="destroyProduct" class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded text-white" method="POST" action="{{ route('admin.products.destroy', $product->id)}}" 
+                           <form wire:submit.prevent="destroyProduct" class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded text-white" method="POST" action="{{ route('admin.products.destroy', $product->id)}}"
                             onsubmit="return confirm('Are you sure');">
                             @csrf
                             @method('DELETE')

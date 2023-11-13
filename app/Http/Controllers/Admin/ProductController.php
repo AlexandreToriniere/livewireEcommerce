@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Category;
+
 use App\Models\Product;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -16,17 +16,17 @@ class ProductController extends Controller
         $products = Product::all();
         return view('admin.products.index', compact('products'));
     }
-    
+
 
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.products.create', compact('categories'));
+        $products = Product::all();
+        return view('admin.products.create', compact('products'));
     }
 
     public function store(ProductStoreRequest $request)
     {
-       
+
         $image = $request->file('image')->store('public/products');
 
         $product = Product::create([
@@ -38,7 +38,7 @@ class ProductController extends Controller
             'quantity'=>$request->quantity,
             'meta_title'=> $request->meta_title,
             'meta_key'=> $request->meta_key,
-            'meta_description' => $request->meta_description, 
+            'meta_description' => $request->meta_description,
             'status' => $request->status == true ? '1':'0'
         ]);
 
@@ -46,25 +46,26 @@ class ProductController extends Controller
             $product->categories()->attach($request->categories);
         }
 
-        return to_route('admin.products.index')->with('success', 'Products Created successfully');
+        return to_route('admin.products.index')->with('success', 'Products created successfully');
 
     }
 
-    public function edit(Product $produits)
+    public function edit(Product $product)
     {
-        return view ('admin.products.edit', compact('products'));
+        return view ('admin.products.edit', compact('product'));
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Product $products)
     {
         $request->validate([
             'name' =>'required',
             'description' =>'required',
+
         ]);
 
-        $image = $category->image;
+        $image = $product->image;
         if($request->hasFile('image')){
-            Storage::delete($category->image);
+            Storage::delete($product->image);
             $image = $request->file('image')->store('public/products');
         }
 
@@ -78,11 +79,11 @@ class ProductController extends Controller
             $prestation->categories()->sync($request->categories);
         }
 
-        return to_route('admin.products.index')->with('product edited successfully.');
+        return to_route('admin.products.index')->with('Product edited successfully.');
     }
 
     public function destroy(Product $product)
-    
+
     {
         Storage::delete($product->image);
         $product->categories()->detach();

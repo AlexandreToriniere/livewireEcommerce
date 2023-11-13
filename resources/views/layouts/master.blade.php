@@ -21,6 +21,4 @@
                 @yield('content')
                 @include('layouts.footer')
             </div>
-
-
     </html>

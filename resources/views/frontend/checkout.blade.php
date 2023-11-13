@@ -9,6 +9,11 @@
         {{$message}}
       </div>
     @endif
+    {{-- @if(Cart::isEmpty())
+        <div>
+
+        </div>
+    @endif --}}
     <h1 class="mb-10 text-center text-2xl font-bold">Cart Items</h1>
     <div class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
       <div class="rounded-lg md:w-2/3">
@@ -45,9 +50,7 @@
           </div>
         </div>
         @endforeach
-        {{-- {{dump(Cart::getContent())}}; --}}
       </div>
-
       <!-- Sub total -->
       <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
         <div class="mb-2 flex justify-between">
@@ -63,7 +66,6 @@
                     <button>
                 </form>
             @endif
-            {{-- <li class="text-sm text-gray-700">including VAT</li> --}}
          </ul>
         </div>
         {{-- <div class="mb-2 flex justify-between">
