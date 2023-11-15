@@ -9,11 +9,7 @@
         {{$message}}
       </div>
     @endif
-    {{-- @if(Cart::isEmpty())
-        <div>
 
-        </div>
-    @endif --}}
     <h1 class="mb-10 text-center text-2xl font-bold">Cart Items</h1>
     <div class="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
       <div class="rounded-lg md:w-2/3">
@@ -23,8 +19,7 @@
           <div class="sm:ml-4 sm:flex sm:w-full sm:justify-between">
             <div class="mt-5 sm:mt-0">
               <h2 class="text-lg font-bold text-gray-900">{{$item->name}}</h2>
-              <p class="mt-1 text-xs text-gray-700">{{$item->price}}€</p>
-              <h1 class="text-lg  text-gray-900">{{$item->model->description}}</h1>
+              <p class="mt-1 text-s text-gray-700">{{$item->price}}€</p>
             </div>
             <div class="mt-4 flex justify-between im sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
               <div class="flex items-center border-gray-100">

@@ -18,14 +18,10 @@ class CheckoutController extends Controller
  //Stripe Payment
     public function session(Request $request)
     {
-
-
-
         $productname = $request->get('productname');
         $totalprice = $request->get('total');
         $two0 = "00";
         $total = "$totalprice$two0";
-
         $session = Session::create([
             $stripe =Stripe::setApiKey("sk_test_51L315DE6SA4XJlM8r0szc44DOR5AZVJqvKGQxEYFxS38MuEy3KTdMngyNxcFlHVV3WPw3G5XszWxCA1DyQymNf3h00MogXWg03"),
             'line_items'  => [

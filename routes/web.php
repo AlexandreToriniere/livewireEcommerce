@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CouponsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminController;
@@ -8,9 +9,9 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Frontend\CartController as FrontendCartController;
 use App\Http\Controllers\Frontend\LoginController as FrontendLoginController;
-use App\Http\Controllers\Frontend\RegisterController as FrontendRegisterController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Frontend\CheckoutController as FrontendCheckoutcontroller;
+use App\Http\Controllers\Frontend\RegisterController as FrontendRegisterController;
 
 
 /*
@@ -24,9 +25,7 @@ use App\Http\Controllers\Frontend\CheckoutController as FrontendCheckoutcontroll
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/home',[HomeController::class, 'index'])->name('home.index');
 //---------------------------Frontend---------------------------->
 
 Route::get('/checkout', [FrontendCheckoutController::class, 'index'])->name('checkout.index');
