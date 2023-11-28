@@ -11,7 +11,8 @@ class CheckoutController extends Controller
 {
     public function index()
     {
-        return view('frontend/checkout');
+        $cartTotalQuantity = \Cart::getTotalQuantity();
+        return view('frontend/checkout', compact('cartTotalQuantity'));
     }
 
 

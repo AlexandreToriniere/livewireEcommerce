@@ -25,7 +25,7 @@ use App\Http\Controllers\Frontend\RegisterController as FrontendRegisterControll
 |
 */
 
-Route::get('/home',[HomeController::class, 'index'])->name('home.index');
+Route::get('/',[HomeController::class, 'index'])->name('home.index');
 //---------------------------Frontend---------------------------->
 
 Route::get('/checkout', [FrontendCheckoutController::class, 'index'])->name('checkout.index');

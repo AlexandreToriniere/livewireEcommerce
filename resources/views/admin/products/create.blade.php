@@ -40,8 +40,8 @@
                         </div>
                         <div class="mt-1">
                             <select multiple id="products" name="products[]" class="form-multiselect block w-full mt-1 @error('products') border-red-400 @enderror">
-                              @foreach ( $products as  $product)
-                                <option value="{{ $product->id }}"> {{$product->name}} </option>
+                              @foreach ( $categories as  $category)
+                                <option value="{{ $category->id }}"> {{$category->name}} </option>
                               @endforeach
                             </select>
                           </div>
