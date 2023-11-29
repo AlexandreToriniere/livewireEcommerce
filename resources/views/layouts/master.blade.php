@@ -13,10 +13,11 @@
 
             <!-- Scripts -->
             @vite(['resources/css/app.css', 'resources/js/app.js'])
+            <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
         </head>
-            <div>
+
+                @include('cookie-consent::index')
                 @include('layouts.header')
                 @yield('content')
                 @include('layouts.footer')
-            </div>
     </html>

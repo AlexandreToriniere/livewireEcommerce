@@ -56,7 +56,7 @@ Route::delete('/coupon', [CouponsController::class, 'destroy'])->name('coupon.de
 
 //---------------------------Backend---------------------------->
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

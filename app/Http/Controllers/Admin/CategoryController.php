@@ -14,7 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-      
+
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -26,7 +26,7 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
 
-        
+
         $image = $request->file('image')->store('public/categories');
 
         Category::create([
@@ -36,7 +36,7 @@ class CategoryController extends Controller
             'image' =>$image,
             'meta_title'=> $request->meta_title,
             'meta_key'=> $request->meta_key,
-            'meta_description' => $request->meta_description, 
+            'meta_description' => $request->meta_description,
             'status' => $request->status == true ? '1':'0'
         ]);
 
@@ -71,13 +71,13 @@ class CategoryController extends Controller
         return to_route('admin.categories.index')->with('Category edited successfully.');
     }
 
-    public function destroy(Category $category)
-    
-    {
-        Storage::delete($category->image);
-        $category->product()->detach();
-        $category->delete();
+//     public function destroy(Category $category)
 
-        return to_route('admin.categories.index')->with('danger', 'Category deleted successfully.');
-    }
+//     {
+//         Storage::delete($category->image);
+//         $category->product()->detach();
+//         $category->delete();
+
+//         return to_route('admin.categories.index')->with('danger', 'Category deleted successfully.');
+//     }
 }

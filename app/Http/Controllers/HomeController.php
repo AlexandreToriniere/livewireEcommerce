@@ -11,6 +11,5 @@ class HomeController extends Controller
         $products = Product::all();
         $cartTotalQuantity = \Cart::getTotalQuantity();
         return view('home', compact('products'), compact('cartTotalQuantity'));
-
     }
 }

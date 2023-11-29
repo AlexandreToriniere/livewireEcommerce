@@ -51,7 +51,6 @@
         <div class="mb-2 flex justify-between">
         <ul>
             <li class="text-gray-700">Subtotal: {{ Cart::getSubTotal()}}€</li>
-
             @if(session()->has('coupon'))
                 <li class="text-gray-700 ">Discount {{session()->get('coupon')['name']}} - {{session()->get('coupon')['discount']}}€</li>
                 <form action="{{ route('coupon.destroy') }}" method="POST">
@@ -63,14 +62,21 @@
             @endif
          </ul>
         </div>
-        {{-- <div class="mb-2 flex justify-between">
+
+        <!-- To do-->
+        <div class="mb-2 flex justify-between">
+            <p class="text-gray-700">Items du panier</p>
+            <p class="text-gray-700">$129.99</p>
+          </div>
+        <!-------------------Taxe--------------------------->
+         <div class="mb-2 flex justify-between">
           <p class="text-gray-700">Taxe</p>
           <p class="text-gray-700">$129.99</p>
-        </div> --}}
-        {{-- <div class="flex justify-between">
+        </div>
+         <div class="flex justify-between">
           <p class="text-gray-700">Shipping</p>
           <p class="text-gray-700">$4.99</p>
-        </div> --}}
+        </div>
         <hr class="my-4" />
         <div class="flex justify-between">
           <p class="text-lg font-bold">Total: </p>

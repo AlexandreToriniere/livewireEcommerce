@@ -59,17 +59,16 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $products)
     {
-        dd($request);
         $request->validate([
             'name' =>'required',
             'description' =>'required',
-            // 'slug' => 'required',
-            // 'price' =>'required',
-            // 'quantity' =>'required',
-            // 'meta_title' => 'required',
-            // 'meta_key'=> 'required',
-            // 'meta_description' => 'required',
-            // 'status' => 'required',
+            'slug' => 'required',
+            'price' =>'required',
+            'quantity' =>'required',
+            'meta_title' => 'required',
+            'meta_key'=> 'required',
+            'meta_description' => 'required',
+            'status' => 'required',
         ]);
 
         $image = $products->image;
@@ -82,12 +81,12 @@ class ProductController extends Controller
             'name'=>$request->name,
             'description'=> $request->description,
             'image' => $image,
-            // 'price'=>$request->price,
-            // 'quantity'=>$request->quantity,
-            // 'meta_title'=>$request->meta_title,
-            // 'meta_key'=>$request->meta_key,
-            // 'meta_description'=>$request->meta_description,
-            // 'status'=>$request->status,
+            'price'=>$request->price,
+            'quantity'=>$request->quantity,
+            'meta_title'=>$request->meta_title,
+            'meta_key'=>$request->meta_key,
+            'meta_description'=>$request->meta_description,
+            'status'=>$request->status,
         ]);
 
         if($request->has('categories')){

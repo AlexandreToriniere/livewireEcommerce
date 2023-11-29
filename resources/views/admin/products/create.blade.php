@@ -39,7 +39,7 @@
                           <input type="Number" id="price" wire:model.lazy="title" name="price" class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('price') border-red-400 @enderror" />
                         </div>
                         <div class="mt-1">
-                            <select multiple id="products" name="products[]" class="form-multiselect block w-full mt-1 @error('products') border-red-400 @enderror">
+                            <select multiple id="categories" name="categories[]" class="form-multiselect block w-full mt-1 @error('products') border-red-400 @enderror">
                               @foreach ( $categories as  $category)
                                 <option value="{{ $category->id }}"> {{$category->name}} </option>
                               @endforeach
