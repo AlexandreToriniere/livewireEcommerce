@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductStoreRequest;
 
 class ProductController extends Controller
@@ -57,43 +58,47 @@ class ProductController extends Controller
         return view ('admin.products.edit', compact('product'));
     }
 
-    public function update(Request $request, Product $products)
+    public function update(Request $request, Product $product)
     {
+        // dd($request->status == true ? '1':'0');
         $request->validate([
             'name' =>'required',
             'description' =>'required',
-            'slug' => 'required',
             'price' =>'required',
             'quantity' =>'required',
-            'meta_title' => 'required',
-            'meta_key'=> 'required',
-            'meta_description' => 'required',
-            'status' => 'required',
+            'slug' =>'required',
+            'meta_title' =>'required',
+            'meta_key' =>'required',
+            'meta_description' =>'required',
+
         ]);
 
-        $image = $products->image;
+        $image = $product->image;
         if($request->hasFile('image')){
-            Storage::delete($products->image);
+            Storage::delete($product->image);
             $image = $request->file('image')->store('public/products');
         }
 
-        $products->update([
+
+        $product->update([
             'name'=>$request->name,
             'description'=> $request->description,
+            'price' => $request->price,
             'image' => $image,
-            'price'=>$request->price,
-            'quantity'=>$request->quantity,
-            'meta_title'=>$request->meta_title,
+            'quantity' => $request->quantity,
+            'slug'=> Str::slug($request->slug),
+            'meta_title' =>$request->meta_title,
             'meta_key'=>$request->meta_key,
             'meta_description'=>$request->meta_description,
-            'status'=>$request->status,
+            'status' => $request->status == true ? '1':'0',
         ]);
 
+
         if($request->has('categories')){
-            $products->categories()->sync($request->categories);
+            $prestation->categories()->sync($request->categories);
         }
 
-        return to_route('admin.products.index')->with('Product edited successfully.');
+        return to_route('admin.products.index')->with('product edited successfully.');
     }
 
     public function destroy(Product $product)

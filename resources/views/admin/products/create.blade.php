@@ -18,17 +18,14 @@
                     <div class="mt-1">
                       <input type="text" id="name" wire:model.lazy="name" name="name" class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                     </div>
-
                     <label for="slug" class="block text-sm font-medium text-gray-700">Slug </label>
                     <div class="mt-1">
                         <input type="text" id="slug" wire:model.lazy="slug" name="slug" class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                     </div>
-
                     <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity </label>
                     <div class="mt-1">
                         <input type="number" id="quantity" wire:model.lazy="number" name="quantity" class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                     </div>
-
                     <label for="image" class="block text-sm font-medium text-gray-700">Image </label>
                     <div class="mt-3">
                         <input type="file" id="image" wire:model="newImage" name="image" class="block w-full transition duration-150 ease-in-out appearance-none bg-white border border-gray-400 rounded-md py-2 px-3 text-base leading-normal transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
