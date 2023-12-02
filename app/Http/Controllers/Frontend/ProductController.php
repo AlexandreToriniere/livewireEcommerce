@@ -16,7 +16,7 @@ class ProductController extends Controller
     }
 
 
-
+    //-------Single Product----------//
     public function show($slug){
         $product = Product::where('slug', $slug)->firstorFail();
         $cartTotalQuantity = \Cart::getTotalQuantity();

@@ -23,7 +23,7 @@
             </div>
             <div class="mt-4 flex justify-between im sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
               <div class="flex items-center border-gray-100">
-                <input disabled ="h-8 w-8 border bg-white text-center text-xs outline-none" type="text" value="{{ $item->quantity }}" min="1" />
+                <input disabled ="h-8 w-8 border bg-white text-center text-xs outline-none" type="text" value="{{ $item->quantity }}"  />
               </div>
               <div class="flex">
                 <td >
@@ -73,10 +73,10 @@
           <p class="text-gray-700">Taxe</p>
           <p class="text-gray-700">$129.99</p>
         </div>
-         <div class="flex justify-between">
-          <p class="text-gray-700">Shipping</p>
-          <p class="text-gray-700">$4.99</p>
-        </div>
+        {{-- <div class="flex justify-between">
+          <p class="text-gray-700">objet</p>
+          <p class="text-gray-700">{{Cart::getTotalQuantity()}}</p>
+        </div> --}}
         <hr class="my-4" />
         <div class="flex justify-between">
           <p class="text-lg font-bold">Total: </p>
@@ -101,6 +101,8 @@
             : Cart::getTotal()
         }}>
             <input type="hidden" name="productname" value="Cookie">
+            <input type="hidden" name="productquantity" value="{{Cart::getTotalQuantity()}}">
+
             <button  type="submit" class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check out</button>
             <a href="{{route('products.index')}}"class="flex items-center border-gray-100">Continuez votre shopping</a>
         </form>
