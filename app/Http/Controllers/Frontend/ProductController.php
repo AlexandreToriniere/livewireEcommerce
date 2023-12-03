@@ -11,7 +11,8 @@ class ProductController extends Controller
 {
     public function index(){
         $products = Product::all();
-        $cartTotalQuantity = \Cart::getTotalQuantity();
+        $cartCollection = \Cart::getContent();
+        $cartTotalQuantity = $cartCollection->count();
         return view('frontend/product', compact('products', 'cartTotalQuantity'));
     }
 
@@ -19,7 +20,8 @@ class ProductController extends Controller
     //-------Single Product----------//
     public function show($slug){
         $product = Product::where('slug', $slug)->firstorFail();
-        $cartTotalQuantity = \Cart::getTotalQuantity();
+        $cartCollection = \Cart::getContent();
+        $cartTotalQuantity = $cartCollection->count();
         return view('frontend/single-product', compact('product', 'cartTotalQuantity'));
     }
 }

@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     public function index(){
-        $cartTotalQuantity = \Cart::getTotalQuantity();
+        $cartCollection = \Cart::getContent();
+        $cartTotalQuantity = $cartCollection->count();
         return view('login', compact('cartTotalQuantity'));
     }
 }

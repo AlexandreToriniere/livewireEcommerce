@@ -13,8 +13,10 @@ class CheckoutController extends Controller
     public function index()
     {
         $cartCollection = \Cart::getContent();
-        $cartTotalQuantity = \Cart::getTotalQuantity();
-        return view('frontend/checkout', compact('cartTotalQuantity'));
+        $cartTotalQuantity = $cartCollection->count();
+        // $product = Product::all();
+        // dd($product);
+        return view('frontend/checkout', compact('cartTotalQuantity', ));
 
     }
 
@@ -22,12 +24,15 @@ class CheckoutController extends Controller
  //Stripe Payment
     public function session(Request $request)
     {
+
         //Request from checkout page
         $productname = $request->get('productname');
         $totalprice = $request->get('total');
         $productquantity = $request->get('productquantity');
         $two0 = "00";
         $total = "$totalprice$two0";
+
+
         $session = Session::create([
             $stripe =Stripe::setApiKey("sk_test_51L315DE6SA4XJlM8r0szc44DOR5AZVJqvKGQxEYFxS38MuEy3KTdMngyNxcFlHVV3WPw3G5XszWxCA1DyQymNf3h00MogXWg03"),
             'line_items'  => [
@@ -40,7 +45,7 @@ class CheckoutController extends Controller
                         ],
                         'unit_amount'  => $total,
                     ],
-                    'quantity'   => $productquantity,
+                    'quantity'   => 1,
                 ],
 
             ],
@@ -54,11 +59,11 @@ class CheckoutController extends Controller
 
     public function success()
     {
-
         foreach (\Cart::getContent() as $item)
         {
+
             Product::where('id', $item->id)
-            ->decrement('quantity'->$item->quantity);
+            ->decrement('quantity',$item->quantity);
         }
 
         \Cart::clear();

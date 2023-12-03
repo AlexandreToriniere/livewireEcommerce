@@ -9,7 +9,8 @@ class HomeController extends Controller
 {
     public function index(){
         $products = Product::all();
-        $cartTotalQuantity = \Cart::getTotalQuantity();
+        $cartCollection = \Cart::getContent();
+        $cartTotalQuantity = $cartCollection->count();
         return view('home', compact('products'), compact('cartTotalQuantity'));
     }
 }

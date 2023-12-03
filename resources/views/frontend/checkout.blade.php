@@ -100,9 +100,8 @@
             ? Cart::getTotal() - session()->get('coupon')['discount']
             : Cart::getTotal()
         }}>
-            <input type="hidden" name="productname" value="Cookie">
+            <input type="hidden" name="productname" value="product">
             <input type="hidden" name="productquantity" value="{{Cart::getTotalQuantity()}}">
-
             <button  type="submit" class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check out</button>
             <a href="{{route('products.index')}}"class="flex items-center border-gray-100">Continuez votre shopping</a>
         </form>
