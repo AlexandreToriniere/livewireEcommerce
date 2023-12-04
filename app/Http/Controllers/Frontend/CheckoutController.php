@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\frontend;
 
 use Stripe\Stripe;
+use App\Mail\MyEmail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -59,12 +61,19 @@ class CheckoutController extends Controller
 
     public function success()
     {
+
+
         foreach (\Cart::getContent() as $item)
         {
-
             Product::where('id', $item->id)
             ->decrement('quantity',$item->quantity);
         }
+
+
+        $subject = 'Achat Validé';
+        $body = 'Achat validé';
+
+        Mail::to('torinierej@gmail.com')->send(new MyEmail($subject, $body));
 
         \Cart::clear();
         return "Thanks for your order. You have just completed your payment. The seeler will reach out to you as soon as possible";

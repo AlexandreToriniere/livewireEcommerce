@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CouponsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestMailController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\Frontend\RegisterController as FrontendRegisterControll
 */
 
 Route::get('/',[HomeController::class, 'index'])->name('home.index');
+Route::get('/testmail', [TestMailController::class, 'index']);
 //---------------------------Frontend---------------------------->
 
 Route::get('/checkout', [FrontendCheckoutController::class, 'index'])->name('checkout.index');
