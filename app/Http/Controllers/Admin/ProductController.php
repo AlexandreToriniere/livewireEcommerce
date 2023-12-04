@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Category;
+
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductStoreRequest;
 
 class ProductController extends Controller
@@ -16,17 +18,18 @@ class ProductController extends Controller
         $products = Product::all();
         return view('admin.products.index', compact('products'));
     }
-    
+
 
     public function create()
     {
+        $products = Product::all();
         $categories = Category::all();
-        return view('admin.products.create', compact('categories'));
+        return view('admin.products.create', compact('products', 'categories'));
     }
 
     public function store(ProductStoreRequest $request)
     {
-       
+
         $image = $request->file('image')->store('public/products');
 
         $product = Product::create([
@@ -38,7 +41,7 @@ class ProductController extends Controller
             'quantity'=>$request->quantity,
             'meta_title'=> $request->meta_title,
             'meta_key'=> $request->meta_key,
-            'meta_description' => $request->meta_description, 
+            'meta_description' => $request->meta_description,
             'status' => $request->status == true ? '1':'0'
         ]);
 
@@ -46,33 +49,50 @@ class ProductController extends Controller
             $product->categories()->attach($request->categories);
         }
 
-        return to_route('admin.products.index')->with('success', 'Products Created successfully');
+        return to_route('admin.products.index')->with('success', 'Products created successfully');
 
     }
 
-    public function edit(Product $produits)
+    public function edit(Product $product)
     {
-        return view ('admin.products.edit', compact('products'));
+        return view ('admin.products.edit', compact('product'));
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Product $product)
     {
+        // dd($request->status == true ? '1':'0');
         $request->validate([
             'name' =>'required',
             'description' =>'required',
+            'price' =>'required',
+            'quantity' =>'required',
+            'slug' =>'required',
+            'meta_title' =>'required',
+            'meta_key' =>'required',
+            'meta_description' =>'required',
+
         ]);
 
-        $image = $category->image;
+        $image = $product->image;
         if($request->hasFile('image')){
-            Storage::delete($category->image);
+            Storage::delete($product->image);
             $image = $request->file('image')->store('public/products');
         }
 
-        $category->update([
+
+        $product->update([
             'name'=>$request->name,
             'description'=> $request->description,
+            'price' => $request->price,
             'image' => $image,
+            'quantity' => $request->quantity,
+            'slug'=> Str::slug($request->slug),
+            'meta_title' =>$request->meta_title,
+            'meta_key'=>$request->meta_key,
+            'meta_description'=>$request->meta_description,
+            'status' => $request->status == true ? '1':'0',
         ]);
+
 
         if($request->has('categories')){
             $prestation->categories()->sync($request->categories);
@@ -82,7 +102,7 @@ class ProductController extends Controller
     }
 
     public function destroy(Product $product)
-    
+
     {
         Storage::delete($product->image);
         $product->categories()->detach();

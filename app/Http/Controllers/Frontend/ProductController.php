@@ -11,13 +11,17 @@ class ProductController extends Controller
 {
     public function index(){
         $products = Product::all();
-        return view('frontend/product', compact('products'));
+        $cartCollection = \Cart::getContent();
+        $cartTotalQuantity = $cartCollection->count();
+        return view('frontend/product', compact('products', 'cartTotalQuantity'));
     }
 
 
-
+    //-------Single Product----------//
     public function show($slug){
         $product = Product::where('slug', $slug)->firstorFail();
-        return view('frontend/single-product', compact('product'));
+        $cartCollection = \Cart::getContent();
+        $cartTotalQuantity = $cartCollection->count();
+        return view('frontend/single-product', compact('product', 'cartTotalQuantity'));
     }
 }

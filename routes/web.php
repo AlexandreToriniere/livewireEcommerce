@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CouponsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestMailController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -10,6 +12,7 @@ use App\Http\Controllers\Frontend\CartController as FrontendCartController;
 use App\Http\Controllers\Frontend\LoginController as FrontendLoginController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Frontend\CheckoutController as FrontendCheckoutcontroller;
+use App\Http\Controllers\Frontend\RegisterController as FrontendRegisterController;
 
 
 /*
@@ -23,9 +26,8 @@ use App\Http\Controllers\Frontend\CheckoutController as FrontendCheckoutcontroll
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[HomeController::class, 'index'])->name('home.index');
+Route::get('/testmail', [TestMailController::class, 'index']);
 //---------------------------Frontend---------------------------->
 
 Route::get('/checkout', [FrontendCheckoutController::class, 'index'])->name('checkout.index');
@@ -36,7 +38,9 @@ Route::post('/checkout/success',[FrontendCheckoutController::class, 'store'])->n
 Route::delete('/checkout/{product}', [FrontendCheckoutController::class, 'destroy'])->name('checkout.destroy');
 
 //---------------------------Login------------------------------>
-Route::get('/bam', [FrontendLoginController::class, 'index'])->name('login.index');
+Route::get('/logins', [FrontendLoginController::class, 'index'])->name('login.index');
+Route::get('/register', [FrontendRegisterController::class, 'index'])->name('register.index');
+
 
 //---------------------------Products---------------------------->
 Route::get('/produits', [FrontendProductController::class, 'index'])->name('products.index');
@@ -54,7 +58,7 @@ Route::delete('/coupon', [CouponsController::class, 'destroy'])->name('coupon.de
 
 //---------------------------Backend---------------------------->
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

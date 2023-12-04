@@ -42,7 +42,6 @@ class Cartcontroller extends Controller
             'cancel_url'  => route('checkout.index'),
         ]);
 
-        dd($session);
 
         return redirect()->away($session->url);
     }

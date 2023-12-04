@@ -15,7 +15,6 @@ class Index extends Component
 
     public function deleteCategory($category_id)
     {
-      
         $this->category_id = $category_id;
     }
 
@@ -23,6 +22,7 @@ class Index extends Component
     {
        $category = Category::find($this->category_id);
        Storage::delete($category->image);
+       $category->products()->detach();
        $category->delete();
     }
 
